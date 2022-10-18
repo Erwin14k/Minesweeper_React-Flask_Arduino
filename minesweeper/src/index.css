@@ -1,0 +1,14 @@
+h1.title {
+  text-align: center;
+  font-size: 100px;
+  color: rgb(81, 224, 15);
+  font-family: Franklin Gothic;
+}
+
+h1.configTitle{
+  text-align: center;
+  font-size: 72px;
+  background: -webkit-linear-gradient(#eee, #333);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;;
+}
