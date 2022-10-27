@@ -97,6 +97,18 @@ def start_game():
     }
     return response
 
+@app.route('/win-game',methods=['POST'])
+def win_game():
+    response = {}
+    id = request.json['id']
+    cell_handler.win(id)
+    response = {
+        "state": "perfect",
+        "message": "win",
+        "id":str(id)
+    }
+    return response
+
 @app.route('/game-over',methods=['POST'])
 def game_over():
     response = {}
@@ -108,11 +120,28 @@ def game_over():
         "id":str(id)
     }
     return response
-    
-    
+
+@app.route('/new-game',methods=['POST'])
+def new_g():
+    response = {}
+    id = request.json['id']
+    cell_handler.new_game(id)
+    response = {
+        "state": "perfect",
+        "message": "new game",
+        "id":str(id)
+    }
+    return response
+#port=serial.Serial('COM2',9600)
+#time.sleep(2)    
 
 
 
 if __name__ == "__main__":
     app.run(threaded=True, port=5000,debug=True)
+    #while True:    
+        #data=port.readlines()
+        #if data=="99":
+            #break
+        #print(data)
 

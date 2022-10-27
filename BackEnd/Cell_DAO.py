@@ -65,11 +65,22 @@ class Cell_DAO:
         port=serial.Serial('COM2',9600)
         time.sleep(2)
         port.write(str(98).encode())
+    
+    def win(self,id):
+        print("winner")
+        port=serial.Serial('COM2',9600)
+        time.sleep(2)
+        port.write(str(95).encode())
 
     def end_game(self,id):
         port=serial.Serial('COM2',9600)
         time.sleep(2)
         port.write(str(99).encode())
+
+    def new_game(self,id):
+        port=serial.Serial('COM2',9600)
+        time.sleep(2)
+        port.write(str(96).encode())
 
     def gameMove(self,id):
         port=serial.Serial('COM2',9600)

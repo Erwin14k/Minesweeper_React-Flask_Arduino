@@ -2,10 +2,12 @@ import React from "react";
 import bomb from "../Assets/bomb.png";
 import luck from "../Assets/luck.png";
 import check from "../Assets/check.png";
+import laugh from"../Assets/laugh.png";
+import win from"../Assets/win.png";
 import { useState } from "react";
 import "../index.css";
-
-const ConfigGame = ({ data }) => {
+import swal from "sweetalert";
+const ConfigGame = () => {
     //Color states of the config matrix
     //Row 0
     const [color00, setColor00] = useState('green');
@@ -53,10 +55,12 @@ const ConfigGame = ({ data }) => {
 
     //State to verify if the game is running
     const [inGame, setInGame] = useState(false);
+    const [menu, setMenu] = useState(false);
     //State to verify the game Over
-    const[gameOver,setGameOver]=useState(false);
+    //const[gameOver,setGameOver]=useState(false);
     //State to control the game score
     const[score,setScore]=useState(0);
+    const[bombCounter,setBombCounter]=useState(0);
     
     const cleanConfig= async ()=>{
         setColor00("green");
@@ -103,6 +107,188 @@ const ConfigGame = ({ data }) => {
         await response.json();
     }
 
+    const configModule= async ()=>{
+        setColor00("green");
+        setButton00(true);
+        setColor01("green");
+        setButton01(true);
+        setColor02("green");
+        setButton02(true);
+        setColor03("green");
+        setButton03(true);
+        setColor10("green");
+        setButton10(true);
+        setColor11("green");
+        setButton11(true);
+        setColor12("green");
+        setButton12(true);
+        setColor13("green");
+        setButton13(true);
+        setColor20("green");
+        setButton20(true);
+        setColor21("green");
+        setButton21(true);
+        setColor22("green");
+        setButton22(true);
+        setColor23("green");
+        setButton23(true);
+        setColor30("green");
+        setButton30(true);
+        setColor31("green");
+        setButton31(true);
+        setColor32("green");
+        setButton32(true);
+        setColor33("green");
+        setButton33(true);
+        setInGame(false);
+        setMenu(false);
+        //Reset game cells
+        setGameButton00(true);
+        setGameButton01(true);
+        setGameButton02(true);
+        setGameButton03(true);
+        setGameButton10(true);
+        setGameButton11(true);
+        setGameButton12(true);
+        setGameButton13(true);
+        setGameButton20(true);
+        setGameButton21(true);
+        setGameButton22(true);
+        setGameButton23(true);
+        setGameButton30(true);
+        setGameButton31(true);
+        setGameButton32(true);
+        setGameButton33(true);
+        setUrl00(luck);
+        setUrl01(luck);
+        setUrl02(luck);
+        setUrl03(luck);
+        setUrl10(luck);
+        setUrl11(luck);
+        setUrl12(luck);
+        setUrl13(luck);
+        setUrl20(luck);
+        setUrl21(luck);
+        setUrl22(luck);
+        setUrl23(luck);
+        setUrl30(luck);
+        setUrl31(luck);
+        setUrl32(luck);
+        setUrl33(luck);
+        setGameColor00("#f1ca00")
+        setGameColor01("#f1ca00")
+        setGameColor02("#f1ca00")
+        setGameColor03("#f1ca00")
+        setGameColor10("#f1ca00")
+        setGameColor11("#f1ca00")
+        setGameColor12("#f1ca00")
+        setGameColor13("#f1ca00")
+        setGameColor20("#f1ca00")
+        setGameColor21("#f1ca00")
+        setGameColor22("#f1ca00")
+        setGameColor23("#f1ca00")
+        setGameColor30("#f1ca00")
+        setGameColor31("#f1ca00")
+        setGameColor32("#f1ca00")
+        setGameColor33("#f1ca00")
+        setScore(0);
+    }
+    const tryAgain= async ()=>{
+        setColor00("green");
+        setButton00(true);
+        setColor01("green");
+        setButton01(true);
+        setColor02("green");
+        setButton02(true);
+        setColor03("green");
+        setButton03(true);
+        setColor10("green");
+        setButton10(true);
+        setColor11("green");
+        setButton11(true);
+        setColor12("green");
+        setButton12(true);
+        setColor13("green");
+        setButton13(true);
+        setColor20("green");
+        setButton20(true);
+        setColor21("green");
+        setButton21(true);
+        setColor22("green");
+        setButton22(true);
+        setColor23("green");
+        setButton23(true);
+        setColor30("green");
+        setButton30(true);
+        setColor31("green");
+        setButton31(true);
+        setColor32("green");
+        setButton32(true);
+        setColor33("green");
+        setButton33(true);
+        setInGame(true);
+        setMenu(false);
+        //Reset game cells
+        setGameButton00(true);
+        setGameButton01(true);
+        setGameButton02(true);
+        setGameButton03(true);
+        setGameButton10(true);
+        setGameButton11(true);
+        setGameButton12(true);
+        setGameButton13(true);
+        setGameButton20(true);
+        setGameButton21(true);
+        setGameButton22(true);
+        setGameButton23(true);
+        setGameButton30(true);
+        setGameButton31(true);
+        setGameButton32(true);
+        setGameButton33(true);
+        setUrl00(luck);
+        setUrl01(luck);
+        setUrl02(luck);
+        setUrl03(luck);
+        setUrl10(luck);
+        setUrl11(luck);
+        setUrl12(luck);
+        setUrl13(luck);
+        setUrl20(luck);
+        setUrl21(luck);
+        setUrl22(luck);
+        setUrl23(luck);
+        setUrl30(luck);
+        setUrl31(luck);
+        setUrl32(luck);
+        setUrl33(luck);
+        setGameColor00("#f1ca00")
+        setGameColor01("#f1ca00")
+        setGameColor02("#f1ca00")
+        setGameColor03("#f1ca00")
+        setGameColor10("#f1ca00")
+        setGameColor11("#f1ca00")
+        setGameColor12("#f1ca00")
+        setGameColor13("#f1ca00")
+        setGameColor20("#f1ca00")
+        setGameColor21("#f1ca00")
+        setGameColor22("#f1ca00")
+        setGameColor23("#f1ca00")
+        setGameColor30("#f1ca00")
+        setGameColor31("#f1ca00")
+        setGameColor32("#f1ca00")
+        setGameColor33("#f1ca00")
+        setScore(0);
+        const response = await fetch("http://localhost:5000/new-game",
+            {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({"id":"96"}),
+            }
+        );
+        await response.json();
+    }
     const startGame= async ()=>{
         const response = await fetch("http://localhost:5000/start-game",
             {
@@ -117,6 +303,28 @@ const ConfigGame = ({ data }) => {
         setInGame(true);
 
     }
+    const winGame= async ()=>{
+        const response = await fetch("http://localhost:5000/win-game",
+            {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({"id":"95"}),
+            }
+        );
+        await response.json();
+        swal({
+            title: "WINNER",
+            text: "Good Job!!",
+            icon: win,
+            timer: 10000,
+            button: true,
+            
+        });
+        
+
+    }
     const gameOverBomb= async ()=>{
         const response = await fetch("http://localhost:5000/game-over",
             {
@@ -128,7 +336,14 @@ const ConfigGame = ({ data }) => {
             }
         );
         await response.json();
-        setInGame(false);
+        swal({
+            title: "GAME OVER !!",
+            text: "Try Again",
+            icon: laugh,
+            timer: 6000,
+            button: true,
+        });
+        setMenu(true);
     }
     //Plant bomb state of the config matrix
     //Row 0
@@ -136,7 +351,8 @@ const ConfigGame = ({ data }) => {
     const changeButton00 = async () => {
         setColor00("red");
         setButton00(false);
-        /*const response = await fetch("http://localhost:5000/config-bomb",
+        setBombCounter(bombCounter+1);
+        const response = await fetch("http://localhost:5000/config-bomb",
             {
                 method: "POST",
                 headers: {
@@ -145,12 +361,13 @@ const ConfigGame = ({ data }) => {
                 body: JSON.stringify({"id":"C00"}),
             }
         );
-        await response.json();*/
+        await response.json();
     };
     const [button01, setButton01] = useState(true);
     const changeButton01 = async () => {
         setColor01("red");
         setButton01(false);
+        setBombCounter(bombCounter+1);
         const response = await fetch("http://localhost:5000/config-bomb",
             {
                 method: "POST",
@@ -166,6 +383,7 @@ const ConfigGame = ({ data }) => {
     const changeButton02 = async () => {
         setColor02("red");
         setButton02(false);
+        setBombCounter(bombCounter+1);
         const response = await fetch("http://localhost:5000/config-bomb",
             {
                 method: "POST",
@@ -181,6 +399,7 @@ const ConfigGame = ({ data }) => {
     const changeButton03 = async () => {
         setColor03("red");
         setButton03(false);
+        setBombCounter(bombCounter+1);
         const response = await fetch("http://localhost:5000/config-bomb",
             {
                 method: "POST",
@@ -197,6 +416,7 @@ const ConfigGame = ({ data }) => {
     const changeButton10 = async () => {
         setColor10("red");
         setButton10(false);
+        setBombCounter(bombCounter+1);
         const response = await fetch("http://localhost:5000/config-bomb",
             {
                 method: "POST",
@@ -212,6 +432,7 @@ const ConfigGame = ({ data }) => {
     const changeButton11 = async () => {
         setColor11("red");
         setButton11(false);
+        setBombCounter(bombCounter+1);
         const response = await fetch("http://localhost:5000/config-bomb",
             {
                 method: "POST",
@@ -227,6 +448,7 @@ const ConfigGame = ({ data }) => {
     const changeButton12 = async () => {
         setColor12("red");
         setButton12(false);
+        setBombCounter(bombCounter+1);
         const response = await fetch("http://localhost:5000/config-bomb",
             {
                 method: "POST",
@@ -242,6 +464,7 @@ const ConfigGame = ({ data }) => {
     const changeButton13 = async () => {
         setColor13("red");
         setButton13(false);
+        setBombCounter(bombCounter+1);
         const response = await fetch("http://localhost:5000/config-bomb",
             {
                 method: "POST",
@@ -258,6 +481,7 @@ const ConfigGame = ({ data }) => {
     const changeButton20 = async () => {
         setColor20("red");
         setButton20(false);
+        setBombCounter(bombCounter+1);
         const response = await fetch("http://localhost:5000/config-bomb",
             {
                 method: "POST",
@@ -273,6 +497,7 @@ const ConfigGame = ({ data }) => {
     const changeButton21 = async () => {
         setColor21("red");
         setButton21(false);
+        setBombCounter(bombCounter+1);
         const response = await fetch("http://localhost:5000/config-bomb",
             {
                 method: "POST",
@@ -288,6 +513,7 @@ const ConfigGame = ({ data }) => {
     const changeButton22 = async () => {
         setColor22("red");
         setButton22(false);
+        setBombCounter(bombCounter+1);
         const response = await fetch("http://localhost:5000/config-bomb",
             {
                 method: "POST",
@@ -303,6 +529,7 @@ const ConfigGame = ({ data }) => {
     const changeButton23 = async () => {
         setColor23("red");
         setButton23(false);
+        setBombCounter(bombCounter+1);
         const response = await fetch("http://localhost:5000/config-bomb",
             {
                 method: "POST",
@@ -319,6 +546,7 @@ const ConfigGame = ({ data }) => {
     const changeButton30 = async () => {
         setColor30("red");
         setButton30(false);
+        setBombCounter(bombCounter+1);
         const response = await fetch("http://localhost:5000/config-bomb",
             {
                 method: "POST",
@@ -334,6 +562,7 @@ const ConfigGame = ({ data }) => {
     const changeButton31 = async () => {
         setColor31("red");
         setButton31(false);
+        setBombCounter(bombCounter+1);
         const response = await fetch("http://localhost:5000/config-bomb",
             {
                 method: "POST",
@@ -349,6 +578,7 @@ const ConfigGame = ({ data }) => {
     const changeButton32 = async () => {
         setColor32("red");
         setButton32(false);
+        setBombCounter(bombCounter+1);
         const response = await fetch("http://localhost:5000/config-bomb",
             {
                 method: "POST",
@@ -364,6 +594,7 @@ const ConfigGame = ({ data }) => {
     const changeButton33 = async () => {
         setColor33("red");
         setButton33(false);
+        setBombCounter(bombCounter+1);
         const response = await fetch("http://localhost:5000/config-bomb",
             {
                 method: "POST",
@@ -390,7 +621,7 @@ const ConfigGame = ({ data }) => {
             setGameButton00(false);
             setGameColor00("#45EE34");
             setUrl00(check);
-            /*const response = await fetch("http://localhost:5000/game-verify",
+            const response = await fetch("http://localhost:5000/game-verify",
             {
                 method: "POST",
                 headers: {
@@ -399,7 +630,11 @@ const ConfigGame = ({ data }) => {
                 body: JSON.stringify({"id":"G00"}),
             }
             );
-            await response.json();*/
+            await response.json();
+
+            if(score===16-bombCounter){
+                winGame();
+            }
         }
     };
 
@@ -416,7 +651,7 @@ const ConfigGame = ({ data }) => {
             setGameButton01(false);
             setGameColor01("#45EE34");
             setUrl01(check);
-            /*const response = await fetch("http://localhost:5000/game-verify",
+            const response = await fetch("http://localhost:5000/game-verify",
             {
                 method: "POST",
                 headers: {
@@ -425,7 +660,10 @@ const ConfigGame = ({ data }) => {
                 body: JSON.stringify({"id":"G01"}),
             }
             );
-            await response.json();*/
+            await response.json();
+            if(score===16-bombCounter){
+                winGame();
+            }
         }
     };
     const [gameButton02, setGameButton02] = useState(true);
@@ -441,7 +679,7 @@ const ConfigGame = ({ data }) => {
             setGameButton02(false);
             setGameColor02("#45EE34");
             setUrl02(check);
-            /*const response = await fetch("http://localhost:5000/game-verify",
+            const response = await fetch("http://localhost:5000/game-verify",
             {
                 method: "POST",
                 headers: {
@@ -450,7 +688,10 @@ const ConfigGame = ({ data }) => {
                 body: JSON.stringify({"id":"G02"}),
             }
             );
-            await response.json();*/
+            await response.json();
+            if(score===16-bombCounter){
+                winGame();
+            }
         }
     };
     const [gameButton03, setGameButton03] = useState(true);
@@ -466,7 +707,7 @@ const ConfigGame = ({ data }) => {
             setGameButton03(false);
             setGameColor03("#45EE34");
             setUrl03(check);
-            /*const response = await fetch("http://localhost:5000/game-verify",
+            const response = await fetch("http://localhost:5000/game-verify",
             {
                 method: "POST",
                 headers: {
@@ -475,7 +716,10 @@ const ConfigGame = ({ data }) => {
                 body: JSON.stringify({"id":"G03"}),
             }
             );
-            await response.json();*/
+            await response.json();
+            if(score===16-bombCounter){
+                winGame();
+            }
         }
     };
     const [gameButton10, setGameButton10] = useState(true);
@@ -491,7 +735,7 @@ const ConfigGame = ({ data }) => {
             setGameButton10(false);
             setGameColor10("#45EE34");
             setUrl10(check);
-            /*const response = await fetch("http://localhost:5000/game-verify",
+            const response = await fetch("http://localhost:5000/game-verify",
             {
                 method: "POST",
                 headers: {
@@ -500,7 +744,10 @@ const ConfigGame = ({ data }) => {
                 body: JSON.stringify({"id":"G10"}),
             }
             );
-            await response.json();*/
+            await response.json();
+            if(score===16-bombCounter){
+                winGame();
+            }
         }
     };
 
@@ -517,7 +764,7 @@ const ConfigGame = ({ data }) => {
             setGameButton11(false);
             setGameColor11("#45EE34");
             setUrl11(check);
-            /*const response = await fetch("http://localhost:5000/game-verify",
+            const response = await fetch("http://localhost:5000/game-verify",
             {
                 method: "POST",
                 headers: {
@@ -526,7 +773,10 @@ const ConfigGame = ({ data }) => {
                 body: JSON.stringify({"id":"G11"}),
             }
             );
-            await response.json();*/
+            await response.json();
+            if(score===16-bombCounter){
+                winGame();
+            }
         }
     };
     const [gameButton12, setGameButton12] = useState(true);
@@ -542,7 +792,7 @@ const ConfigGame = ({ data }) => {
             setGameButton12(false);
             setGameColor12("#45EE34");
             setUrl12(check);
-            /*const response = await fetch("http://localhost:5000/game-verify",
+            const response = await fetch("http://localhost:5000/game-verify",
             {
                 method: "POST",
                 headers: {
@@ -551,7 +801,10 @@ const ConfigGame = ({ data }) => {
                 body: JSON.stringify({"id":"G12"}),
             }
             );
-            await response.json();*/
+            await response.json();
+            if(score===16-bombCounter){
+                winGame();
+            }
         }
     };
     const [gameButton13, setGameButton13] = useState(true);
@@ -567,7 +820,7 @@ const ConfigGame = ({ data }) => {
             setGameButton13(false);
             setGameColor13("#45EE34");
             setUrl13(check);
-            /*const response = await fetch("http://localhost:5000/game-verify",
+            const response = await fetch("http://localhost:5000/game-verify",
             {
                 method: "POST",
                 headers: {
@@ -576,7 +829,10 @@ const ConfigGame = ({ data }) => {
                 body: JSON.stringify({"id":"G13"}),
             }
             );
-            await response.json();*/
+            await response.json();
+            if(score===16-bombCounter){
+                winGame();
+            }
         }
     };
     const [gameButton20, setGameButton20] = useState(true);
@@ -591,8 +847,8 @@ const ConfigGame = ({ data }) => {
             setScore(score+1);
             setGameButton20(false);
             setGameColor20("#45EE34");
-            setUrl13(check);
-            /*const response = await fetch("http://localhost:5000/game-verify",
+            setUrl20(check);
+            const response = await fetch("http://localhost:5000/game-verify",
             {
                 method: "POST",
                 headers: {
@@ -601,7 +857,10 @@ const ConfigGame = ({ data }) => {
                 body: JSON.stringify({"id":"G20"}),
             }
             );
-            await response.json();*/
+            await response.json();
+            if(score===16-bombCounter){
+                winGame();
+            }
         }
     };
     const [gameButton21, setGameButton21] = useState(true);
@@ -617,7 +876,7 @@ const ConfigGame = ({ data }) => {
             setGameButton21(false);
             setGameColor21("#45EE34");
             setUrl21(check);
-            /*const response = await fetch("http://localhost:5000/game-verify",
+            const response = await fetch("http://localhost:5000/game-verify",
             {
                 method: "POST",
                 headers: {
@@ -626,7 +885,10 @@ const ConfigGame = ({ data }) => {
                 body: JSON.stringify({"id":"G21"}),
             }
             );
-            await response.json();*/
+            await response.json();
+            if(score===16-bombCounter){
+                winGame();
+            }
         }
     };
     const [gameButton22, setGameButton22] = useState(true);
@@ -642,7 +904,7 @@ const ConfigGame = ({ data }) => {
             setGameButton22(false);
             setGameColor22("#45EE34");
             setUrl22(check);
-            /*const response = await fetch("http://localhost:5000/game-verify",
+            const response = await fetch("http://localhost:5000/game-verify",
             {
                 method: "POST",
                 headers: {
@@ -651,7 +913,10 @@ const ConfigGame = ({ data }) => {
                 body: JSON.stringify({"id":"G22"}),
             }
             );
-            await response.json();*/
+            await response.json();
+            if(score===16-bombCounter){
+                winGame();
+            }
         }
     };
 
@@ -668,7 +933,7 @@ const ConfigGame = ({ data }) => {
             setGameButton23(false);
             setGameColor23("#45EE34");
             setUrl23(check);
-            /*const response = await fetch("http://localhost:5000/game-verify",
+            const response = await fetch("http://localhost:5000/game-verify",
             {
                 method: "POST",
                 headers: {
@@ -677,7 +942,10 @@ const ConfigGame = ({ data }) => {
                 body: JSON.stringify({"id":"G23"}),
             }
             );
-            await response.json();*/
+            await response.json();
+            if(score===16-bombCounter){
+                winGame();
+            }
         }
     };
     const [gameButton30, setGameButton30] = useState(true);
@@ -693,7 +961,7 @@ const ConfigGame = ({ data }) => {
             setGameButton30(false);
             setGameColor30("#45EE34");
             setUrl30(check);
-            /*const response = await fetch("http://localhost:5000/game-verify",
+            const response = await fetch("http://localhost:5000/game-verify",
             {
                 method: "POST",
                 headers: {
@@ -702,7 +970,10 @@ const ConfigGame = ({ data }) => {
                 body: JSON.stringify({"id":"G30"}),
             }
             );
-            await response.json();*/
+            await response.json();
+            if(score===16-bombCounter){
+                winGame();
+            }
         }
     };
     const [gameButton31, setGameButton31] = useState(true);
@@ -718,7 +989,7 @@ const ConfigGame = ({ data }) => {
             setGameButton31(false);
             setGameColor31("#45EE34");
             setUrl31(check);
-            /*const response = await fetch("http://localhost:5000/game-verify",
+            const response = await fetch("http://localhost:5000/game-verify",
             {
                 method: "POST",
                 headers: {
@@ -727,7 +998,10 @@ const ConfigGame = ({ data }) => {
                 body: JSON.stringify({"id":"G31"}),
             }
             );
-            await response.json();*/
+            await response.json();
+            if(score===16-bombCounter){
+                winGame();
+            }
         }
     };
     const [gameButton32, setGameButton32] = useState(true);
@@ -743,7 +1017,7 @@ const ConfigGame = ({ data }) => {
             setGameButton32(false);
             setGameColor32("#45EE34");
             setUrl32(check);
-            /*const response = await fetch("http://localhost:5000/game-verify",
+            const response = await fetch("http://localhost:5000/game-verify",
             {
                 method: "POST",
                 headers: {
@@ -752,7 +1026,10 @@ const ConfigGame = ({ data }) => {
                 body: JSON.stringify({"id":"G32"}),
             }
             );
-            await response.json();*/
+            await response.json();
+            if(score===16-bombCounter){
+                winGame();
+            }
         }
     };
     const [gameButton33, setGameButton33] = useState(true);
@@ -768,7 +1045,7 @@ const ConfigGame = ({ data }) => {
             setGameButton33(false);
             setGameColor33("#45EE34");
             setUrl33(check);
-            /*const response = await fetch("http://localhost:5000/game-verify",
+            const response = await fetch("http://localhost:5000/game-verify",
             {
                 method: "POST",
                 headers: {
@@ -777,10 +1054,10 @@ const ConfigGame = ({ data }) => {
                 body: JSON.stringify({"id":"G33"}),
             }
             );
-            await response.json();*/
+            await response.json();
         }
     };
-    if(!inGame){
+    if(!inGame && !menu){
         return(
             <div className="App">
                 <header className="App-header">
@@ -957,7 +1234,7 @@ const ConfigGame = ({ data }) => {
                 </div>  
             </div>
         );
-    }else{
+    }else if(inGame && !menu){
         return(
             <div className="App">
                 <header className="App-header">
@@ -1174,6 +1451,28 @@ const ConfigGame = ({ data }) => {
                 <div className="col-md-12 text-center">
                     <br></br>
                     <button type="button" className="btn btn-warning btn-lg" >Config Game</button>
+                </div>  
+            </div>
+        );
+    }else if(inGame && menu){
+        return(
+            <div className="App">
+                <header className="App-header">
+                    <nav className="navbar navbar-light" style={{backgroundColor:"#e3f2fd"}}>
+                        <h1 className="title">
+                            <img src={bomb} width="110" height="110" className="d-inline-block align-top" alt=""/>
+                                Minesweeper
+                        </h1>
+                    </nav>
+                    <h1 className="configTitle">MENU</h1>
+                </header>
+                <div className="col-md-12 text-center">
+                    <br></br>
+                    <button type="button" className="btn btn-warning btn-lg" onClick={configModule}>Config Game</button>
+                </div>  
+                <div className="col-md-12 text-center">
+                    <br></br>
+                    <button type="button" className="btn btn-warning btn-lg" onClick={tryAgain} >Play Again!!</button>
                 </div>  
             </div>
         );
