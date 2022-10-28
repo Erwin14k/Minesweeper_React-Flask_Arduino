@@ -12,3 +12,8 @@ h1.configTitle{
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;;
 }
+h2.text{
+  padding-inline-start: 270px;
+  font-size: 36px;
+
+}

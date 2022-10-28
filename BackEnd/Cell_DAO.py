@@ -3,11 +3,15 @@ import json
 from datetime import datetime
 import serial
 import time
+import re
 
 class Cell_DAO:
     def __init__(self):
         self.cells = []
         self.score = 0
+        self.winState=False
+        self.playState=False
+        self.gameOverState=False
 
     def new_cell(self,id,row,column,state):
         self.cells.append(Cell(id,row,column,state))
@@ -117,6 +121,21 @@ class Cell_DAO:
             port.write(str(31).encode())
         elif(id=="G33"):
             port.write(str(32).encode())
+
+    def return_game_data(self):
+        port=serial.Serial('COM4',9600)
+        time.sleep(6) 
+        data=port.readline()
+        data=str(data)
+        data=data.strip()
+        data=data.replace('\\r\\n',"")
+        data=data.replace("b'","")
+        data=data.replace("'","")
+        print(data)
+        data=json.loads(data)
+        port.close()
+        return data
+        #return json.dumps(data)
 
         
         

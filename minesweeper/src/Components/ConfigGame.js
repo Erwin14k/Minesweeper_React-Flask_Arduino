@@ -56,6 +56,9 @@ const ConfigGame = () => {
     //State to verify if the game is running
     const [inGame, setInGame] = useState(false);
     const [menu, setMenu] = useState(false);
+    const[gameData,setGameData]=useState({});
+    //State to verify if the game is running in proteus
+    const [proteus, setProteus] = useState(false);
     //State to verify the game Over
     //const[gameOver,setGameOver]=useState(false);
     //State to control the game score
@@ -289,6 +292,10 @@ const ConfigGame = () => {
         );
         await response.json();
     }
+
+    const playFromProteus= async ()=>{
+        setProteus(true);
+    }
     const startGame= async ()=>{
         const response = await fetch("http://localhost:5000/start-game",
             {
@@ -301,6 +308,43 @@ const ConfigGame = () => {
         );
         await response.json();
         setInGame(true);
+
+    }
+    const getStats= async ()=>{
+        const response = await fetch("http://localhost:5000/get-game-data",
+            {
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+            }
+        );
+        const dataa=await response.json();
+        if(dataa.play===0){
+            dataa.play="False";
+        }else{
+            dataa.play="True";
+        }
+
+        if(dataa.over===0){
+            dataa.over="False";
+        }else{
+            dataa.over="True";
+        }
+
+        if(dataa.win===0){
+            dataa.win="False";
+        }else{
+            dataa.win="True";
+        }
+        console.log(gameData.play+"-"+dataa.over+dataa.win);
+        if (gameData!=={} && gameData.play==="True" && dataa.over==="False" && dataa.win==="False"){
+            dataa.score=gameData.score+1;
+            console.log(dataa.score);
+        }
+        setGameData(dataa);
+    
+        
 
     }
     const winGame= async ()=>{
@@ -1057,7 +1101,7 @@ const ConfigGame = () => {
             await response.json();
         }
     };
-    if(!inGame && !menu){
+    if(!inGame && !menu && !proteus){
         return(
             <div className="App">
                 <header className="App-header">
@@ -1232,9 +1276,13 @@ const ConfigGame = () => {
                     <br></br>
                     <button type="button" className="btn btn-warning btn-lg" onClick={startGame} >Start Game</button>
                 </div>  
+                <div className="col-md-12 text-center">
+                    <br></br>
+                    <button type="button" className="btn btn-info btn-lg" onClick={playFromProteus}>Play From Proteus</button>
+                </div>  
             </div>
         );
-    }else if(inGame && !menu){
+    }else if(inGame && !menu && !proteus){
         return(
             <div className="App">
                 <header className="App-header">
@@ -1448,13 +1496,9 @@ const ConfigGame = () => {
                         </div>
                     </div>
                 </div>
-                <div className="col-md-12 text-center">
-                    <br></br>
-                    <button type="button" className="btn btn-warning btn-lg" >Config Game</button>
-                </div>  
             </div>
         );
-    }else if(inGame && menu){
+    }else if(inGame && menu && !proteus){
         return(
             <div className="App">
                 <header className="App-header">
@@ -1476,7 +1520,28 @@ const ConfigGame = () => {
                 </div>  
             </div>
         );
-
+    }else if(proteus){
+        return(
+            <div className="App">
+                <header className="App-header">
+                    <nav className="navbar navbar-light" style={{backgroundColor:"#e3f2fd"}}>
+                        <h1 className="title">
+                            <img src={bomb} width="110" height="110" className="d-inline-block align-top" alt=""/>
+                                Minesweeper
+                        </h1>
+                    </nav>
+                    <h1 className="configTitle">Playing In Proteus....</h1>
+                </header>
+                <h2 className="text">Score: {gameData.score}</h2>
+                <h2 className="text">Playing: {gameData.play}</h2>
+                <h2 className="text">Game Over: {gameData.over}</h2>
+                <h2 className="text">Win: {gameData.win}</h2>
+                <div className="col-md-12 text-center">
+                    <br></br>
+                    <button type="button" className="btn btn-warning btn-lg" onClick={getStats} >Update Stats</button>
+                </div>  
+            </div>
+        );
     }
 };
 
